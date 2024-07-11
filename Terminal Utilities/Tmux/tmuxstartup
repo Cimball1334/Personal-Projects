@@ -1,0 +1,21 @@
+#!/bin/bash
+session="Base"
+tmux new-session -d -s $session -n "Working"
+
+# Split H
+#tmux selectp -t 0
+tmux splitw -h -p 50
+
+# Split V
+tmux selectp -t 1
+tmux splitw -v -p 15
+
+# Create New Window
+tmux new-window -t "Base":1 -n "scratch"
+
+tmux splitw -h -p 50
+
+#Switch Back to main
+tmux select-window -t $session:0
+tmux selectp -t 0
+tmux attach-session -t $session
